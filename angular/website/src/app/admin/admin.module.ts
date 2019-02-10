@@ -26,6 +26,7 @@ import { MyNavComponent } from "./my-nav/my-nav.component";
 import { LayoutModule } from "@angular/cdk/layout";
 import { HomeComponent } from "./home/home.component";
 import { AdminComponent } from "./admin.component";
+import { WebsiteComponent } from "../website/website.component";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AdminComponent } from "./admin.component";
     TeamNewComponent,
     MyNavComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    WebsiteComponent
   ],
   imports: [
     CommonModule,
