@@ -1,0 +1,86 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="container-fluid m-0 p-0 mb-5">
+    <div class="row">
+      <div class="mt-4 col-12 bg-dark mb-5">
+        <div class="card shadow">
+          <div class="card-body bg-dark">
+            <div class="form-group row">
+              <div class="col-sm-6">
+                <input
+                  type="hidden"
+                  name="id"
+                  class="form-control text-light bg-dark"
+                  formControlName="id"
+                />
+              </div>
+              <div class="col-sm-12">
+                <label for="name" class="col-12 col-form-label  m-0 p-0"
+                  >Name</label
+                >
+                <input
+                  name="name"
+                  class="form-control text-light bg-dark"
+                  formControlName="name"
+                />
+              </div>
+
+              <div class="col-sm-12">
+                <label for="css" class="col-12 col-form-label  m-0 p-0"
+                  >Header Background colour</label
+                >
+                <select class="form-control" id="css" formControlName="css">
+                  <option
+                    *ngFor="let cssval of cssvalue"
+                    [value]="cssval.style"
+                    >{{ cssval.name }}</option
+                  >
+                </select>
+              </div>
+              <div class="col-sm-12">
+                <label for="tag_line" class="col-12 col-form-label  m-0 p-0"
+                  >Tag Line</label
+                >
+                <input
+                  name="tag_line"
+                  class="form-control text-light bg-dark"
+                  formControlName="tag_line"
+                />
+              </div>
+              <div class="col-12">
+                <label
+                  for="description"
+                  class=" col-form-label m-0 p-0 text-light"
+                  >Description</label
+                >
+                <ckeditor type="text" formControlName="description"></ckeditor>
+              </div>
+
+              <div class="col-sm-12">
+                <label for="photo_link" class="col-12 col-form-label  m-0 p-0"
+                  >Photo</label
+                >
+                <input
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button
+                type="submit"
+                [disabled]="!profileForm.valid"
+                class="btn btn-warning text-light float-right m-2"
+              >
+                Submit
+              </button>
+            </div>
+
+            <!--  {{ profileForm.value | json }} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
