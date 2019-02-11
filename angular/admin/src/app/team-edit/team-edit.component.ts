@@ -92,18 +92,22 @@ export class TeamEditComponent implements OnInit {
     fd.append("description", this.profileForm.value.description);
     fd.append("photo", this.selectedFile);
     console.log(fd);
-
-    this.http
-      .post(`http://127.0.0.1/laravel/public/api/team/edit`, fd)
-      .subscribe(
-        (data) => {
-          this.job = data;
-          console.log(this.job);
-        },
-        (error) => {
-          this.error = error;
-          console.log(this.error);
-        }
-      );
+    this.route.params.subscribe((params: Params) => {
+      this.http
+        .put(
+          `http://rpsrobosoft.com/laravel/public/api/team/` + params["id"],
+          fd
+        )
+        .subscribe(
+          (data) => {
+            this.job = data;
+            console.log(this.job);
+          },
+          (error) => {
+            this.error = error;
+            console.log(this.error);
+          }
+        );
+    });
   }
 }

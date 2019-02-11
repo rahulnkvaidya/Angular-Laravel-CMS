@@ -57,7 +57,6 @@ class Teams extends Controller
      */
     public function show(Team $team)
     {
-        echo $team;
         $inter = team::where('id', 'like', $team)->first();
         return $inter;
     }
