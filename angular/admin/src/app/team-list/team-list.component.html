@@ -27,6 +27,7 @@
             width="80px;"
             src="http://rpsrobosoft.com/laravel/storage/app/{{ golden.image }}"
             alt="Card image cap"
+            *ngIf="golden.image"
           />
         </td>
         <td>{{ golden.tag_line }}</td>
@@ -40,7 +41,7 @@
         </td>
         <td>
           <button
-            routerLink="/admin/team-edit/{{ golden.id }}"
+            routerLink="/team-edit/{{ golden.id }}"
             class="btn btn-warning text-dark float-right m-2"
           >
             Edit

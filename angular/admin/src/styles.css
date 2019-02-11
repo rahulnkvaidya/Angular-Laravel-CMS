@@ -2,6 +2,44 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+.vertical-align-middle { 
+  vertical-align: middle; 
+}
+.padding-bottom-3 {
+  padding-bottom: 3px;
+}
+.grape-9 {
+  background-color:#862e9c;
+}
+.text-grape-9 {
+  color:#862e9c; 
+}
+.violet-9 {
+  background-color:#5f3dc4;
+}
+.text-violet-9 {
+  color:#5f3dc4; 
+}
+.yellow-4 {
+  background-color:#ffd43b;
+}
+.text-yellow-4 {
+  color:#ffd43b; 
+}
+.yellow-7 {
+  background-color:#f59f00;
+}
+.text-yellow-7 {
+  color:#f59f00; 
+}
+.cyan-5 {
+  background-color:#22b8cf;
+}
+.text-cyan-5 {
+  color:#22b8cf; 
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

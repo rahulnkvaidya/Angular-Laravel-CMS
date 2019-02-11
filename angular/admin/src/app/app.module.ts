@@ -8,7 +8,6 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from "ng-snotify";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CKEditorModule } from "ng2-ckeditor";
-import { AdminModule } from "./admin.module";
 import { NotifyService } from "./services/notify.service";
 import { AlbumImagesComponent } from "./album-images/album-images.component";
 import { AlbumEditComponent } from "./album-edit/album-edit.component";
@@ -22,6 +21,13 @@ import { TeamListComponent } from "./team-list/team-list.component";
 import { TeamNewComponent } from "./team-new/team-new.component";
 import { MyNavComponent } from "./my-nav/my-nav.component";
 import { HomeComponent } from "./home/home.component";
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -48,7 +54,11 @@ import { HomeComponent } from "./home/home.component";
     ReactiveFormsModule,
     HttpClientModule,
     CKEditorModule,
-    AdminModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     NotifyService,

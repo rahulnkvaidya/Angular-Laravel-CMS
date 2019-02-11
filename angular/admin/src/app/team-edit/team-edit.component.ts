@@ -66,7 +66,7 @@ export class TeamEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.http
-        .get("http://127.0.0.1/laravel/public/api/team/" + params["id"])
+        .get("http://rpsrobosoft.com/laravel/public/api/team/" + params["id"])
         .subscribe((data) => {
           this.job = data;
           this.profileForm.patchValue({
