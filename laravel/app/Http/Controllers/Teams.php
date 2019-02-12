@@ -112,7 +112,10 @@ class Teams extends Controller
         /// get image url for delete
         $dbt = Team::where('id','like', $team)->first();
         /// Delete Stored image 
-        Storage::delete($dbt->image);
+        if (Storage::exists($dbt->image)) {
+            /// Delete Stored image 
+            Storage::delete($dbt->image);
+        }
         //print_r($dbt[0]->image);
         $dt = Team::find($team);
         $dt->delete();

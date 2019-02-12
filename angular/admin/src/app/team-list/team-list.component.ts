@@ -54,6 +54,7 @@ export class TeamListComponent implements OnInit {
       );
   }
   handleError(error) {
+    console.log(error);
     this.error = error.error.message;
     this.Notify.onClear();
     this.Notify.onError(
