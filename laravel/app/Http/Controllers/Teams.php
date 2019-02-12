@@ -14,7 +14,7 @@ class Teams extends Controller
      */
     public function index()
     {
-        $inter = team::orderBy('id', 'asc')
+        $inter = Team::orderBy('id', 'asc')
         ->limit(10)
         ->Paginate(10);
         $inter->withPath('');
@@ -39,11 +39,11 @@ class Teams extends Controller
      */
     public function store(Request $request)
     {
-        $data = team::create($request->all());
+        $data = Team::create($request->all());
         $insertedId = $data->id;
         if ($request->hasFile('photo')) {
         $path = $request->file('photo')->store('public');
-        $dt = team::where('id', 'like', $insertedId);
+        $dt = Team::where('id', 'like', $insertedId);
         $dt->update(['image' => $path]);
         return response()->json('Successfully added');
         } 
@@ -57,7 +57,7 @@ class Teams extends Controller
      */
     public function show(Team $team)
     {
-        $inter = team::find($team);
+        $inter = Team::find($team);
         return $inter;
     }
 
@@ -81,22 +81,22 @@ class Teams extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        $id = $request->id;
-        $dt = team::where('id', 'like', $id);
+        $id = $team;
+        $dt = Team::where('id', 'like', $id);
         $dt->update(['name' => $request->name,
                     'tag_line' => $request->tag_line,
                     'description' => $request->description]);
 
         if ($request->hasFile('photo')) {
             ///////// old photo remove ///////
-            $dbt = team::where('id', 'like', $id)->first();
+            $dbt = Team::where('id', 'like', $id)->first();
             if (Storage::exists($dbt->image)) {
                 /// Delete Stored image 
                 Storage::delete($dbt->image);
             }
             ///////////////////
             $path = $request->file('photo')->store('public');
-            $dt = team::where('id', 'like', $id);
+            $dt = Team::where('id', 'like', $id);
             $dt->update(['image' => $path]);
             } 
     }
@@ -110,11 +110,11 @@ class Teams extends Controller
     public function destroy(Team $team)
     {
         /// get image url for delete
-        $dbt = team::where('id','like', $id)->first();
+        $dbt = Team::where('id','like', $team)->first();
         /// Delete Stored image 
         Storage::delete($dbt->image);
         //print_r($dbt[0]->image);
-        $dt = team::find($id);
+        $dt = Team::find($team);
         $dt->delete();
     }
 }

@@ -69,6 +69,7 @@ export class TeamEditComponent implements OnInit {
         .get("http://rpsrobosoft.com/laravel/public/api/team/" + params["id"])
         .subscribe((data) => {
           this.job = data;
+          console.log(this.job);
           this.profileForm.patchValue({
             id: this.job["id"],
             name: this.job["name"],
