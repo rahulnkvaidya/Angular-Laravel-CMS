@@ -1,7 +1,7 @@
 <mat-toolbar class="m-0  yellow-9 text-white">
   <i class="material-icons mr-2">directions_bike</i> Team List
   <span class="fill-remaining-space"></span>
-  <a routerLink="/admin/team-new" class="btn btn-info float-right mt-2"
+  <a routerLink="/team-new" class="btn btn-info float-right mt-2"
     ><mat-icon>add_circle_outline</mat-icon></a
   >
 </mat-toolbar>
@@ -60,7 +60,7 @@
     </div>
     <ng-template #elseBlock>
       <li class="page-item">
-        <a class="page-link" routerLink="/admin/courses-list/{{ prev }}">
+        <a class="page-link" routerLink="/team-list/{{ prev }}">
           &laquo; Previous
         </a>
       </li>
@@ -72,7 +72,7 @@
     </div>
     <ng-template #elsenext>
       <li class="page-item">
-        <a class="page-link" routerLink="/admin/courses-list/{{ next }}"
+        <a class="page-link" routerLink="/team-list/{{ next }}"
           >Next &raquo;</a
         >
       </li>
