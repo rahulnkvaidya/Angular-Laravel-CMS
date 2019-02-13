@@ -1,3 +1,66 @@
-<p>
-  services-new works!
-</p>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="container-fluid m-0 p-0 mb-5">
+    <div class="row">
+      <div class="mt-4 col-12 bg-dark mb-5">
+        <div class="card shadow">
+          <div class="card-body bg-dark">
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <label for="title" class="col-12 col-form-label  m-0 p-0"
+                  >Title</label
+                >
+                <input
+                  name="title"
+                  class="form-control text-light bg-dark"
+                  formControlName="title"
+                />
+              </div>
+
+              <div class="col-sm-12">
+                <label for="css" class="col-12 col-form-label  m-0 p-0"
+                  >Header Background colour</label
+                >
+                <select class="form-control" id="css" formControlName="css">
+                  <option
+                    *ngFor="let cssval of cssvalue"
+                    [value]="cssval.style"
+                    >{{ cssval.name }}</option
+                  >
+                </select>
+              </div>
+              <div class="col-12">
+                <label
+                  for="description"
+                  class=" col-form-label m-0 p-0 text-light"
+                  >Description</label
+                >
+                <ckeditor type="text" formControlName="description"></ckeditor>
+              </div>
+
+              <div class="col-sm-12">
+                <label for="image" class="col-12 col-form-label  m-0 p-0"
+                  >Image</label
+                >
+                <input
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button
+                type="submit"
+                [disabled]="!profileForm.valid"
+                class="btn btn-warning text-light float-right m-2"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

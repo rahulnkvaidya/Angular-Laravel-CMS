@@ -109,6 +109,7 @@ class Teams extends Controller
      */
     public function destroy(Team $team)
     {
+        echo $team;
         /// get image url for delete
         $dbt = Team::where('id','like', $team)->first();
         /// Delete Stored image 

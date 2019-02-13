@@ -7,6 +7,9 @@ import { AlbumEditComponent } from "./album-edit/album-edit.component";
 import { TeamListComponent } from "./team-list/team-list.component";
 import { TeamNewComponent } from "./team-new/team-new.component";
 import { TeamEditComponent } from "./team-edit/team-edit.component";
+import { ServicesListComponent } from './services-list/services-list.component';
+import { ServicesNewComponent } from './services-new/services-new.component';
+import { ServicesEditComponent } from './services-edit/services-edit.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,18 @@ const routes: Routes = [
   {
     path: "team-edit/:id",
     component: TeamEditComponent
+  },
+  {
+    path: "service-list/:page",
+    component: ServicesListComponent
+  },
+  {
+    path: "service-new",
+    component: ServicesNewComponent
+  },
+  {
+    path: "service-edit/:id",
+    component: ServicesEditComponent
   }
 ];
 
