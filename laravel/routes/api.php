@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
     'album'=> 'Albums',
     'album-image'=>'AlbumImages',
-    'team'=> 'Teams'
+    'team'=> 'Teams',
+    'service'=> 'ServiceController'
 ]);
