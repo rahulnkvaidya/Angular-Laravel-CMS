@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Service;
+use App\PageImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ServiceController extends Controller
+class PageImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $inter = Service::orderBy('id', 'asc')
+        $inter = PageImage::orderBy('id', 'asc')
         ->limit(10)
         ->Paginate(10);
         $inter->withPath('');
@@ -40,11 +40,11 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Service::create($request->all());
+        $data = PageImage::create($request->all());
         $insertedId = $data->id;
         if ($request->hasFile('image')) {
         $path = $request->file('image')->store('public');
-        $dt = Service::where('id', 'like', $insertedId);
+        $dt = PageImage::where('id', 'like', $insertedId);
         $dt->update(['image' => $path]);
         return response()->json('Successfully added');
         } 
@@ -53,22 +53,22 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\PageImage  $pageImage
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show(PageImage $pageImage)
     {
-        $inter = Service::find($service);
+        $inter = PageImage::find($pageImage);
         return $inter;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Service  $service
+     * @param  \App\PageImage  $pageImage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(PageImage $pageImage)
     {
         //
     }
@@ -77,27 +77,26 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
+     * @param  \App\PageImage  $pageImage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, PageImage $pageImage)
     {
-        $id = $service;
-        $dt = Service::where('id', 'like', $id);
-        $dt->update(['title' => $request->title,
-                    'css' => $request->css,
-                    'description' => $request->description]);
+        $id = $pageImage;
+        $dt = PageImage::where('id', 'like', $id);
+        $dt->update(['pagename' => $request->pagename,
+                    'position' => $request->position]);
 
         if ($request->hasFile('image')) {
             ///////// old image remove ///////
-            $dbt = Service::where('id', 'like', $id)->first();
+            $dbt = PageImage::where('id', 'like', $id)->first();
             if (Storage::exists($dbt->image)) {
                 /// Delete Stored image 
                 Storage::delete($dbt->image);
             }
             ///////////////////
             $path = $request->file('image')->store('public');
-            $dt = Service::where('id', 'like', $id);
+            $dt = PageImage::where('id', 'like', $id);
             $dt->update(['image' => $path]);
             } 
     }
@@ -105,20 +104,20 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Service  $service
+     * @param  \App\PageImage  $pageImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(PageImage $pageImage)
     {
         /// get image url for delete
-        $dbt = Service::where('id','like', $service)->first();
+        $dbt = PageImage::where('id','like', $pageImage)->first();
         /// Delete Stored image 
         if (Storage::exists($dbt->image)) {
             /// Delete Stored image 
             Storage::delete($dbt->image);
         }
         //print_r($dbt[0]->image);
-        $dt = Service::find($service);
+        $dt = PageImage::find($pageImage);
         $dt->delete();
     }
 }

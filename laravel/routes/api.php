@@ -20,5 +20,6 @@ Route::apiResources([
     'album'=> 'Albums',
     'album-image'=>'AlbumImages',
     'team'=> 'Teams',
-    'service'=> 'ServiceController'
+    'service'=> 'ServiceController',
+    'pageimage' => 'PageImageController'
 ]);
