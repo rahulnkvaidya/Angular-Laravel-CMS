@@ -1,3 +1,68 @@
-<p>
-  album-list works!
-</p>
+<mat-toolbar class="m-0  yellow-9 text-white">
+  <i class="material-icons mr-2">directions_bike</i> Album List
+  <span class="fill-remaining-space"></span>
+  <a routerLink="/album-new" class="btn btn-info float-right mt-2"
+    ><mat-icon>add_circle_outline</mat-icon></a
+  >
+</mat-toolbar>
+
+<div class="row">
+  <div class="col-4 pt-3" *ngFor="let voice of newsdata">
+    <div class="card text-center">
+      <img
+        class="card-img-top"
+        src="http://www.artpickle.in/lara/storage/app/{{ voice.image }}"
+        width="100%"
+        height="200px;"
+        alt=""
+      />
+      <div class="card-body">
+        <div class="card-title text-dark">{{ voice.title }}</div>
+        <p class="card-title">
+          <a
+            routerLink="/album-detail/{{ voice.id }}/1"
+            class="btn btn-primary"
+            >Detail</a
+          >
+          <a
+            routerLink="/album-edit/{{ voice.id }}"
+            class="btn btn-primary ml-1"
+          >
+            Edit
+          </a>
+          <a (click)="deletealbum(voice.id)" class="btn btn-primary ml-1">
+            Delete
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 mt-2">
+    <ul class="pagination">
+      <div *ngIf="prev == 0; else elseBlock">
+        <li class="page-item disabled">
+          <span class="page-link">&laquo; Previous</span>
+        </li>
+      </div>
+      <ng-template #elseBlock>
+        <li class="page-item">
+          <a class="page-link" routerLink="/album-list/{{ prev }}">
+            &laquo; Previous
+          </a>
+        </li>
+      </ng-template>
+      <div *ngIf="next > last_page; else elsenext">
+        <li class="page-item disabled">
+          <span class="page-link">Next &raquo;</span>
+        </li>
+      </div>
+      <ng-template #elsenext>
+        <li class="page-item">
+          <a class="page-link" routerLink="/album-list/{{ next }}"
+            >Next &raquo;</a
+          >
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</div>

@@ -1,3 +1,85 @@
-<p>
-  album-images works!
-</p>
+<mat-toolbar class="m-0  yellow-9 text-white">
+  <i class="material-icons mr-2">directions_bike</i> Album photo
+  <span class="fill-remaining-space"></span>
+</mat-toolbar>
+<div class="mt-4 col-12 bg-dark mb-5">
+  <div class="card shadow">
+    <div class="card-body bg-dark">
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <label for="photo_link" class="col-12 col-form-label  m-0 p-0"
+            >Photo</label
+          >
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button
+          (click)="onSubmit()"
+          class="btn btn-warning text-light float-right m-2"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-4 pt-3" *ngFor="let voice of newsdata">
+      <div class="card text-center">
+        <img
+          class="card-img-top"
+          src="http://www.artpickle.in/lara/storage/app/{{ voice.image }}"
+          width="100%"
+          height="200px;"
+          alt=""
+        />
+        <button
+          (click)="deleteimage(voice.id)"
+          class="btn btn-warning text-dark float-right m-2"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 mt-2">
+    <ul class="pagination">
+      <div *ngIf="prev == 0; else elseBlock">
+        <li class="page-item disabled">
+          <span class="page-link">&laquo; Previous</span>
+        </li>
+      </div>
+      <ng-template #elseBlock>
+        <li class="page-item">
+          <a
+            class="page-link"
+            routerLink="/admin/gallery-detail/{{ id }}/{{ prev }}"
+          >
+            &laquo; Previous
+          </a>
+        </li>
+      </ng-template>
+      <div *ngIf="next > last_page; else elsenext">
+        <li class="page-item disabled">
+          <span class="page-link">Next &raquo;</span>
+        </li>
+      </div>
+      <ng-template #elsenext>
+        <li class="page-item">
+          <a
+            class="page-link"
+            routerLink="/admin/gallery-detail/{{ id }}/{{ next }}"
+            >Next &raquo;</a
+          >
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</div>
