@@ -65,7 +65,7 @@ export class AlbumNewComponent implements OnInit {
     console.log(fd);
 
     this.http
-      .post(`http://rpsrobosoft.com/laravel/public/api/album-image`, fd)
+      .post(`http://www.rpsrobosoft.com/laravel/public/api/album`, fd)
       .subscribe(
         (data) => this.handleResponse(data),
         (error) => this.handleError(error)
