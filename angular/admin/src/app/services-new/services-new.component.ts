@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import {
   FormArray,
   NgForm,
@@ -10,6 +9,7 @@ import {
   ReactiveFormsModule
 } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-services-new',
@@ -43,7 +43,7 @@ export class ServicesNewComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private url: UrlService
   ) {
     this.options = {
       removePlugins:
@@ -76,8 +76,7 @@ export class ServicesNewComponent implements OnInit {
     fd.append("image", this.selectedFile);
     console.log(fd);
 
-    this.http
-      .post(`http://rpsrobosoft.com/laravel/public/api/service`, fd)
+    this.url.servicenew(fd)
       .subscribe();
   }
   handleError(error) {

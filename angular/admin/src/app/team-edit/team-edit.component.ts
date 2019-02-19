@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import {
   FormArray,
   NgForm,
@@ -9,6 +8,7 @@ import {
   FormGroup
 } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: "app-team-edit",
@@ -45,7 +45,7 @@ export class TeamEditComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private url: UrlService
   ) {
     this.options = {
       removePlugins:
@@ -65,9 +65,8 @@ export class TeamEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.http
-        .get("http://rpsrobosoft.com/laravel/public/api/team/" + params["id"])
-        .subscribe((data) => {
+      this.url.teamread(params["id"])
+      .subscribe((data) => {
           this.job = data;
           console.log(this.job);
           this.profileForm.patchValue({
@@ -94,11 +93,7 @@ export class TeamEditComponent implements OnInit {
     fd.append("photo", this.selectedFile);
     console.log(fd);
     this.route.params.subscribe((params: Params) => {
-      this.http
-        .put(
-          `http://rpsrobosoft.com/laravel/public/api/team/` + params["id"],
-          fd
-        )
+      this.url.teamedit(params["id"], fd)
         .subscribe(
           (data) => {
             this.job = data;

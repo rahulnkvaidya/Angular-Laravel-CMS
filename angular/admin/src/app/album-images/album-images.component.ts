@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, Params } from "@angular/router";
 import { NotifyService } from "src/app/services/notify.service";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-album-images',
@@ -19,19 +19,13 @@ export class AlbumImagesComponent implements OnInit {
   selectedFile: File = null;
 
   constructor(
-    private http: HttpClient,
     private route: ActivatedRoute,
-    private Notify: NotifyService
+    private Notify: NotifyService,
+    private url: UrlService
   ) {}
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-      this.http
-        .get(
-          "http://rpsrobosoft.com/laravel/public/api/album-image/" +
-            params["id"] +
-            "?page=" +
-            params["page"]
-        )
+      this.url.albumimage(params["page"],params["id"])
         .subscribe((data) => {
           this.albums = data;
           this.newsdata = this.albums["data"];
@@ -52,16 +46,14 @@ export class AlbumImagesComponent implements OnInit {
       fd.append("photo", this.selectedFile, this.selectedFile.name);
       fd.append("album", params["id"]);
       console.log(fd);
-      this.http
-        .post(`http://rpsrobosoft.com/laravel/public/api/album-image`, fd)
+      this.url.albumimageadd(fd)
         .subscribe((data) => {
           this.ngOnInit();
         });
     });
   }
   deleteimage(id) {
-    this.http
-      .get("http://rpsrobosoft.com/laravel/public/api/album-image/" + id)
+    this.url.albumimagedelete(id)
       .subscribe((data) => {
         this.Notify.onSuccess(
           "Your Request was successfull proccesed",

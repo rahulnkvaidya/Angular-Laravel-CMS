@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Params } from "@angular/router";
 import { Subscription } from "rxjs";
 import { NotifyService } from "src/app/services/notify.service";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: 'app-services-list',
@@ -19,19 +19,15 @@ export class ServicesListComponent implements OnInit {
   paramsSubscription: Subscription;
 
   constructor(
-    private http: HttpClient,
     private route: ActivatedRoute,
-    private Notify: NotifyService
+    private Notify: NotifyService,
+    private url: UrlService
   ) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-      this.http
-        .get(
-          "http://rpsrobosoft.com/laravel/public/api/service?page=" +
-            params["page"]
-        )
-        .subscribe((data) => {
+      this.url.servicelist(params["page"])
+      .subscribe((data) => {
           this.goldens = data;
           this.goldendata = this.goldens["data"];
           console.log(this.goldens);
@@ -46,9 +42,8 @@ export class ServicesListComponent implements OnInit {
   }
   deleteteam(id) {
     this.Notify.onwaitInfo();
-    this.http
-      .delete("http://rpsrobosoft.com/laravel/api/service/" + id)
-      .subscribe(
+    this.url.servicedelete(id)
+    .subscribe(
         (data) => this.handleResponse(data),
         (error) => this.handleError(error)
       );

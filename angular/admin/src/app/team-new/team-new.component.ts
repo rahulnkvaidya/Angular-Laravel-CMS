@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import {
   FormArray,
   NgForm,
@@ -10,6 +9,7 @@ import {
   ReactiveFormsModule
 } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: "app-team-new",
@@ -44,7 +44,7 @@ export class TeamNewComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private url: UrlService
   ) {
     this.options = {
       removePlugins:
@@ -78,9 +78,8 @@ export class TeamNewComponent implements OnInit {
     fd.append("photo", this.selectedFile);
     console.log(fd);
 
-    this.http
-      .post(`http://rpsrobosoft.com/laravel/public/api/team`, fd)
-      .subscribe();
+    this.url.teamnew(fd)
+    .subscribe();
   }
   handleError(error) {
     this.error = error.error.message;

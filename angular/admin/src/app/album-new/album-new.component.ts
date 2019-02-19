@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import {
   FormArray,
   NgForm,
@@ -10,6 +9,7 @@ import {
   ReactiveFormsModule
 } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: "app-album-new",
@@ -32,7 +32,7 @@ export class AlbumNewComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private url: UrlService
   ) {
     this.options = {
       removePlugins:
@@ -64,8 +64,7 @@ export class AlbumNewComponent implements OnInit {
     fd.append("photo", this.selectedFile, this.selectedFile.name);
     console.log(fd);
 
-    this.http
-      .post(`http://www.rpsrobosoft.com/laravel/public/api/album`, fd)
+    this.url.albumnew(fd)
       .subscribe(
         (data) => this.handleResponse(data),
         (error) => this.handleError(error)

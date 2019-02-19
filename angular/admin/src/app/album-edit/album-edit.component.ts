@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import {
   FormArray,
   NgForm,
@@ -10,6 +9,7 @@ import {
   ReactiveFormsModule
 } from "@angular/forms";
 import { ActivatedRoute, Params, Router } from "@angular/router";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: "app-album-edit",
@@ -34,7 +34,7 @@ export class AlbumEditComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient
+    private url: UrlService
   ) {
     this.options = {
       removePlugins:
@@ -54,8 +54,7 @@ export class AlbumEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.http
-        .get("http://artpickle.in/lara/api/albums/" + params["id"])
+      this.url.albumread(params["id"])
         .subscribe((data) => {
           this.job = data;
           this.profileForm.patchValue({
@@ -75,8 +74,7 @@ export class AlbumEditComponent implements OnInit {
     fd.append("title", this.profileForm.value.title);
     fd.append("photo", this.selectedFile);
     console.log(fd);
-    this.http
-      .post(`http://www.artpickle.in/lara/api/albums/edit`, fd)
+    this.url.albumedit(fd)
       .subscribe(
         (data) => {
           this.job = data;

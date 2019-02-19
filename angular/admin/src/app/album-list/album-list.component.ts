@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, Params } from "@angular/router";
+import { UrlService } from '../services/url.service';
 
 @Component({
   selector: "app-album-list",
@@ -18,11 +18,10 @@ export class AlbumListComponent implements OnInit {
   error: Object;
   data: Object;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor( private route: ActivatedRoute, private url: UrlService) {}
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-      this.http
-        .get("http://rpsrobosoft.com/laravel/public/api/album?page=" + params["id"])
+      this.url.albumlist(params["id"])
         .subscribe((data) => {
           this.albums = data;
           this.newsdata = this.albums["data"];
@@ -34,8 +33,7 @@ export class AlbumListComponent implements OnInit {
     });
   }
   deletealbum(id) {
-    this.http
-      .get("http://rpsrobosoft.com/laravel/public/api/album/" + id)
+    this.url.albumdelete(id)
       .subscribe(
         (data) => this.handleResponse(data),
         (error) => {
