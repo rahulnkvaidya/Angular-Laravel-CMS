@@ -16,9 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResources([
-    'pageimage' => 'PageImageController'
-]);
 //////// Team CRUD //////////
 Route::get('team', 'Teams@List');
 Route::get('team/{id}', 'Teams@Read');
@@ -42,3 +39,10 @@ Route::get('service/{id}', 'ServiceController@Read');
 Route::post('service', 'ServiceController@Create');
 Route::post('service/update', 'ServiceController@Update');
 Route::get('service/delete/{id}','ServiceController@Delete');
+
+//////// Pageimage CRUD //////////
+Route::get('pageimage', 'PageTopImageController@List');
+Route::get('pageimage/{id}', 'PageTopImageController@Read');
+Route::post('pageimage', 'PageTopImageController@Create');
+Route::post('pageimage/update', 'PageTopImageController@Update');
+Route::get('pageimage/delete/{id}','PageTopImageController@Delete');

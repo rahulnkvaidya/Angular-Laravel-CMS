@@ -5,10 +5,13 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class UrlService {
-// for Local host 
-  private baseUrl = "http://localhost/laraang/laravel/public/api";
-//private baseUrl = "http://rpsrobosoft.com/laravel/public/api";
-  public storagepath = "http://localhost/laraang/laravel/storage/app/";
+  // for Local host 
+  // private baseUrl = "http://rpsrobosoft.com/laravel/public/api";
+  private domain = "http://localhost";
+  private folder = "/laraang";
+  // Dont Edit this line
+  private baseUrl = this.domain + this.folder + "/laravel/public/api";
+  public storagepath = this.domain + this.folder + "/laravel/storage/app/";
 
   constructor(private http: HttpClient) {}
   // Album
@@ -69,6 +72,20 @@ export class UrlService {
   teamDelete(data){
     return this.http.get(`${this.baseUrl}/team/delete/`+ data);
   }
-  
-  
+  // pageTopImage
+  pageTopImageList(data) {
+    return this.http.get(`${this.baseUrl}/pageimage?page=` + data);
+  }
+  pageTopImageRead(data) {
+    return this.http.get(`${this.baseUrl}/pageimage/` + data);
+  }
+  pageTopImageCreate(data) {
+    return this.http.post(`${this.baseUrl}/pageimage`, data);
+  }
+  pageTopImageUpdate(data) {
+    return this.http.post(`${this.baseUrl}/pageimage/update`, data);
+  }
+  pageTopImageDelete(data){
+    return this.http.get(`${this.baseUrl}/pageimage/delete/`+ data);
+  }
 }

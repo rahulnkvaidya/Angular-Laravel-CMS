@@ -1,0 +1,64 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="container-fluid m-0 p-0 mb-5">
+    <div class="row">
+      <div class="mt-4 col-12 bg-dark mb-5">
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="form-group row">
+              <div class="col-sm-6">
+                <input
+                  type="hidden"
+                  name="id"
+                  class="form-control text-light bg-dark"
+                  formControlName="id"
+                />
+              </div>
+              <div class="col-sm-12">
+                <label for="page" class="col-12 col-form-label  m-0 p-0"
+                  >Page Name</label
+                >
+                <input
+                  name="pagename"
+                  class="form-control text-light bg-dark"
+                  formControlName="pagename"
+                />
+              </div>
+
+              <div class="col-sm-12">
+                <label for="position" class="col-12 col-form-label  m-0 p-0"
+                  >Position</label
+                >
+                <input
+                  name="position"
+                  class="form-control text-light bg-dark"
+                  formControlName="position"
+                />
+              </div>
+
+              <div class="col-sm-12">
+                <label for="photo_link" class="col-12 col-form-label  m-0 p-0"
+                  >Photo</label
+                >
+                <input
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-12">
+              <button
+                type="submit"
+                [disabled]="!profileForm.valid"
+                class="btn btn-warning text-light float-right m-2"
+              >
+                Submit
+              </button>
+            </div>
+              {{ profileForm.value | json }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

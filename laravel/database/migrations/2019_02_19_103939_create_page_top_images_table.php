@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePageImagesTable extends Migration
+class CreatePageTopImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePageImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('page_images', function (Blueprint $table) {
+        Schema::create('page_top_images', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
             $table->increments('id');
@@ -31,6 +31,6 @@ class CreatePageImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('page_images');
+        Schema::dropIfExists('page_top_images');
     }
 }

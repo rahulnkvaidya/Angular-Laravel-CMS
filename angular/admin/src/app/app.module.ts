@@ -28,6 +28,9 @@ import {
   MatIconModule,
   MatListModule
 } from "@angular/material";
+import { PageImageEditComponent } from './page-image-edit/page-image-edit.component';
+import { PageImageListComponent } from './page-image-list/page-image-list.component';
+import { PageImageNewComponent } from './page-image-new/page-image-new.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import {
     TeamListComponent,
     TeamNewComponent,
     MyNavComponent,
-    HomeComponent
+    HomeComponent,
+    PageImageEditComponent,
+    PageImageListComponent,
+    PageImageNewComponent
   ],
   imports: [
     BrowserModule,
