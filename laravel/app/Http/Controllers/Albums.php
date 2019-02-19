@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Album;
 use App\AlbumImage;
 use Illuminate\Http\Request;
+use Response;
+use Illuminate\Support\Facades\Storage;
 
 class Albums extends Controller
 {
@@ -13,7 +15,7 @@ class Albums extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function List()
     {
         $inter = Album::orderBy('id', 'asc')
         ->limit(10)
@@ -22,23 +24,7 @@ class Albums extends Controller
        return $inter;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function Create(Request $request)
     {
         $data = Album::create($request->all());
         $insertedId = $data->id;
@@ -48,69 +34,33 @@ class Albums extends Controller
         $dt->update(['image' => $path]);
         } 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Album $album)
+    public function Read($id)
     {
-        $inter = Album::find($team);
+        $inter = Album::find($id);
         return $inter;
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Album $album)
+    public function update(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Album $album)
-    {
-        $id = $album;
+        $id = $request->id;
         $dt = Album::where('id', 'like', $id);
         $dt->update(['title' => $request->title]);
-
-        if ($request->hasFile('photo')) {
-            ///////// old photo remove ///////
+        if ($request->hasFile('image')) {
             $dbt = Album::where('id','like', $id)->first();
             if (Storage::exists($dbt->image)) {
                 Storage::delete($dbt->image);
             }
-            ///////////////////
-            $path = $request->file('photo')->store('public');
+            $path = $request->file('image')->store('public');
             $dt = Album::where('id', 'like', $id);
             $dt->update(['image' => $path]);
             } 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Album $album)
+    public function Delete($id)
     {
-        $dbt = Album::where('id','like', $album)->first();
+        $dbt = Album::where('id','like', $id)->first();
         $ct = AlbumImage::where('album','like', $dbt->id)->count();
         if($ct < "1"){
             Storage::delete($dbt->image);
-            $dt = Album::find($album);
+            $dt = Album::find($id);
             $dt->delete();
             return response()->json(['data' => 'Successfully Deleted'])->header('Content-Type', 'application/json');
         }

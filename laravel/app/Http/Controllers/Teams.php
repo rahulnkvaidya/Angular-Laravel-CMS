@@ -46,13 +46,10 @@ class Teams extends Controller
             'description' => $request->description
             ]);
         if ($request->hasFile('image')) {
-            ///////// old photo remove ///////
             $dbt = Team::where('id', 'like', $id)->first();
             if (Storage::exists($dbt->image)) {
-                /// Delete Stored image 
                 Storage::delete($dbt->image);
             }
-            ///////////////////
             $path = $request->file('image')->store('public');
             $dt = Team::where('id', 'like', $id);
             $dt->update(['image' => $path]);
@@ -70,7 +67,7 @@ class Teams extends Controller
             Storage::delete($dbt->image);
         }
         //print_r($dbt[0]->image);
-        $dt = Team::find($team);
+        $dt = Team::find($id);
         $dt->delete();
     }
 }

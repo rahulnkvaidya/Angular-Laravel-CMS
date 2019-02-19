@@ -17,8 +17,11 @@ export class AlbumListComponent implements OnInit {
   public last_page;
   error: Object;
   data: Object;
+  public imagepath;
 
-  constructor( private route: ActivatedRoute, private url: UrlService) {}
+  constructor( private route: ActivatedRoute, private url: UrlService) {
+    this.imagepath = this.url.storagepath;
+  }
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
       this.url.albumlist(params["id"])
@@ -33,7 +36,7 @@ export class AlbumListComponent implements OnInit {
     });
   }
   deletealbum(id) {
-    this.url.albumdelete(id)
+    this.url.albumDelete(id)
       .subscribe(
         (data) => this.handleResponse(data),
         (error) => {

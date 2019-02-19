@@ -26,7 +26,7 @@ export class ServicesListComponent implements OnInit {
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-      this.url.servicelist(params["page"])
+      this.url.serviceList(params["page"])
       .subscribe((data) => {
           this.goldens = data;
           this.goldendata = this.goldens["data"];
@@ -42,7 +42,7 @@ export class ServicesListComponent implements OnInit {
   }
   deleteteam(id) {
     this.Notify.onwaitInfo();
-    this.url.servicedelete(id)
+    this.url.serviceDelete(id)
     .subscribe(
         (data) => this.handleResponse(data),
         (error) => this.handleError(error)

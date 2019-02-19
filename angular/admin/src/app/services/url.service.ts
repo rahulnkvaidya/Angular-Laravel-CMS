@@ -11,39 +11,44 @@ export class UrlService {
   public storagepath = "http://localhost/laraang/laravel/storage/app/";
 
   constructor(private http: HttpClient) {}
-  albumread(data) {
-    return this.http.get(`${this.baseUrl}/album/` + data);
-  }
-  albumdelete(data) {
-    return this.http.get(`${this.baseUrl}/album/` + data);
-  }
+  // Album
   albumlist(data) {
     return this.http.get(`${this.baseUrl}/album?page=` + data);
   }
-  albumimage(data, id) {
-    return this.http.get(`${this.baseUrl}/album-image/` + id + `?page=` + data);
+  albumRead(data) {
+    return this.http.get(`${this.baseUrl}/album/` + data);
   }
-  albumimageadd(data) {
-    return this.http.post(`${this.baseUrl}/album-image`, data);
-  }
-  albumedit(data) {
-    return this.http.post(`${this.baseUrl}/album/edit`, data);
-  }
-  albumnew(data) {
+  albumCreate(data) {
     return this.http.post(`${this.baseUrl}/album`, data);
   }
-  albumimagedelete(data){
-    return this.http.get(`${this.baseUrl}/album-image/`+ data);
+  albumUpdate(data) {
+    return this.http.post(`${this.baseUrl}/album/update`, data);
+  }
+  albumDelete(data) {
+    return this.http.get(`${this.baseUrl}/album/delete/` + data);
+  }
+  // Album Image
+  albumimageList(id, page) {
+    return this.http.get(`${this.baseUrl}/album-images/` + id + `?page=` + page);
+  }
+  albumimageCreate(data) {
+    return this.http.post(`${this.baseUrl}/album-images`, data);
+  }
+  albumimageDelete(data){
+    return this.http.get(`${this.baseUrl}/album-images/delete/`+ data);
   }
   // Service
-  servicelist(data) {
+  serviceList(data) {
     return this.http.get(`${this.baseUrl}/service?page=` + data);
   }
-  servicedelete(data){
-    return this.http.delete(`${this.baseUrl}/service`, data);
-  }
-  servicenew(data) {
+  serviceCreate(data) {
     return this.http.post(`${this.baseUrl}/service`, data);
+  }
+  serviceUpdate(data) {
+    return this.http.post(`${this.baseUrl}/service`, data);
+  }
+  serviceDelete(data){
+    return this.http.get(`${this.baseUrl}/service`, data);
   }
   // team
   teamList(data) {

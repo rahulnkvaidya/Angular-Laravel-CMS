@@ -64,7 +64,7 @@ export class AlbumNewComponent implements OnInit {
     fd.append("photo", this.selectedFile, this.selectedFile.name);
     console.log(fd);
 
-    this.url.albumnew(fd)
+    this.url.albumCreate(fd)
       .subscribe(
         (data) => this.handleResponse(data),
         (error) => this.handleError(error)

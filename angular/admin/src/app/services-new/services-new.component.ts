@@ -76,7 +76,7 @@ export class ServicesNewComponent implements OnInit {
     fd.append("image", this.selectedFile);
     console.log(fd);
 
-    this.url.servicenew(fd)
+    this.url.serviceCreate(fd)
       .subscribe();
   }
   handleError(error) {

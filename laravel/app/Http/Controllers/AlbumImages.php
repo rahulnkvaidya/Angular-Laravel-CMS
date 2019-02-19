@@ -4,87 +4,38 @@ namespace App\Http\Controllers;
 
 use App\AlbumImage;
 use Illuminate\Http\Request;
+use Response;
+use Illuminate\Support\Facades\Storage;
 
 class AlbumImages extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+ 
+    public function Create(Request $request)
     {
         $data = AlbumImage::create($request->all());
         $insertedId = $data->id;
-        if ($request->hasFile('photo')) {
-        $path = $request->file('photo')->store('public');
+        if ($request->hasFile('image')) {
+        $path = $request->file('image')->store('public');
         $dt = AlbumImage::where('id', 'like', $insertedId);
         $dt->update(['image' => $path]);
         } 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\AlbumImage  $albumImage
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AlbumImage $albumImage)
+    public function List($id)
     {
-        $inter = AlbumImage::where('album',$albumImage)
+        $inter = AlbumImage::where('album',$id)
         ->orderBy('id', 'asc')
         ->limit(10)
         ->Paginate(10);
         $inter->withPath('');
        return $inter;
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\AlbumImage  $albumImage
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AlbumImage $albumImage)
+    public function update(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AlbumImage  $albumImage
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, AlbumImage $albumImage)
-    {
-        $id = $albumImage;
+        $id = $request->id;
         $dt = AlbumImage::where('id', 'like', $id);
         $dt->update(['album' => $request->album]);
 
-        if ($request->hasFile('photo')) {
+        if ($request->hasFile('image')) {
             ///////// old photo remove ///////
             $dbt = AlbumImage::where('id','like', $id)->first();
             if (Storage::exists($dbt->image)) {
@@ -92,23 +43,16 @@ class AlbumImages extends Controller
                 Storage::delete($dbt->image);
             }
             ///////////////////
-            $path = $request->file('photo')->store('public');
+            $path = $request->file('image')->store('public');
             $dt = AlbumImage::where('id', 'like', $id);
             $dt->update(['image' => $path]);
         } 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\AlbumImage  $albumImage
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(AlbumImage $albumImage)
+    public function Delete($id)
     {
-        $dbt = AlbumImage::where('id','like', $albumImage)->first();
+        $dbt = AlbumImage::where('id','like', $id)->first();
         Storage::delete($dbt->image);
-        $dt = AlbumImage::find($albumImage);
+        $dt = AlbumImage::find($id);
         $dt->delete();
     }
 }

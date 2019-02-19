@@ -16,16 +16,19 @@ export class AlbumImagesComponent implements OnInit {
   public next;
   public prev;
   public last_page;
+  public imagepath;
   selectedFile: File = null;
 
   constructor(
     private route: ActivatedRoute,
     private Notify: NotifyService,
     private url: UrlService
-  ) {}
+  ) {
+    this.imagepath = this.url.storagepath;
+  }
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-      this.url.albumimage(params["page"],params["id"])
+      this.url.albumimageList(params["id"], params["page"])
         .subscribe((data) => {
           this.albums = data;
           this.newsdata = this.albums["data"];
@@ -43,17 +46,17 @@ export class AlbumImagesComponent implements OnInit {
   onSubmit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
       const fd = new FormData();
-      fd.append("photo", this.selectedFile, this.selectedFile.name);
+      fd.append("image", this.selectedFile);
       fd.append("album", params["id"]);
       console.log(fd);
-      this.url.albumimageadd(fd)
+      this.url.albumimageCreate(fd)
         .subscribe((data) => {
           this.ngOnInit();
         });
     });
   }
   deleteimage(id) {
-    this.url.albumimagedelete(id)
+    this.url.albumimageDelete(id)
       .subscribe((data) => {
         this.Notify.onSuccess(
           "Your Request was successfull proccesed",

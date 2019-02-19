@@ -54,7 +54,7 @@ export class AlbumEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.url.albumread(params["id"])
+      this.url.albumRead(params["id"])
         .subscribe((data) => {
           this.job = data;
           this.profileForm.patchValue({
@@ -72,9 +72,9 @@ export class AlbumEditComponent implements OnInit {
     const fd = new FormData();
     fd.append("id", this.profileForm.value.id);
     fd.append("title", this.profileForm.value.title);
-    fd.append("photo", this.selectedFile);
+    fd.append("image", this.selectedFile);
     console.log(fd);
-    this.url.albumedit(fd)
+    this.url.albumUpdate(fd)
       .subscribe(
         (data) => {
           this.job = data;
