@@ -26,6 +26,7 @@ export class TeamEditComponent implements OnInit {
     description: [""]
   });
   job: Object;
+  subjob:Object;
   Data: Object;
   public error;
   options: Object;
@@ -65,10 +66,10 @@ export class TeamEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.url.teamread(params["id"])
+      this.url.teamRead(params["id"])
       .subscribe((data) => {
           this.job = data;
-          console.log(this.job);
+         // console.log(this.job);
           this.profileForm.patchValue({
             id: this.job["id"],
             name: this.job["name"],
@@ -90,14 +91,16 @@ export class TeamEditComponent implements OnInit {
     fd.append("css", this.profileForm.value.css);
     fd.append("tag_line", this.profileForm.value.tag_line);
     fd.append("description", this.profileForm.value.description);
-    fd.append("photo", this.selectedFile);
+    fd.append("image", this.selectedFile);
+    
+    console.log(this.profileForm.value.name);
     console.log(fd);
     this.route.params.subscribe((params: Params) => {
-      this.url.teamedit(params["id"], fd)
+      this.url.teamUpdate(fd)
         .subscribe(
           (data) => {
-            this.job = data;
-            console.log(this.job);
+            this.subjob = data;
+            console.log(this.subjob);
           },
           (error) => {
             this.error = error;

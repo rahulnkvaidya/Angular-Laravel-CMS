@@ -78,7 +78,7 @@ export class TeamNewComponent implements OnInit {
     fd.append("photo", this.selectedFile);
     console.log(fd);
 
-    this.url.teamnew(fd)
+    this.url.teamCreate(fd)
     .subscribe();
   }
   handleError(error) {

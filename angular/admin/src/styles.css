@@ -41,5 +41,147 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .text-cyan-5 {
   color:#22b8cf; 
 }
+.oc-white{   background-color:#ffffff;}
+.oc-black{   background-color:#000000;}
+.oc-gray-0{   background-color:#f8f9fa;}
+.oc-gray-1{   background-color:#f1f3f5;}
+.oc-gray-2{   background-color:#e9ecef;}
+.oc-gray-3{   background-color:#dee2e6;}
+.oc-gray-4{   background-color:#ced4da;}
+.oc-gray-5{   background-color:#adb5bd;}
+.oc-gray-6{   background-color:#868e96;}
+.oc-gray-7{   background-color:#495057;}
+.oc-gray-8{   background-color:#343a40;}
+.oc-gray-9{   background-color:#212529;}
+.oc-red-0{   background-color:#fff5f5;}
+.oc-red-1{   background-color:#ffe3e3;}
+.oc-red-2{   background-color:#ffc9c9;}
+.oc-red-3{   background-color:#ffa8a8;}
+.oc-red-4{   background-color:#ff8787;}
+.oc-red-5{   background-color:#ff6b6b;}
+.oc-red-6{   background-color:#fa5252;}
+.oc-red-7{   background-color:#f03e3e;}
+.oc-red-8{   background-color:#e03131;}
+.oc-red-9{   background-color:#c92a2a;}
 
+.oc-pink-0{   background-color:#fff0f6;}
+.oc-pink-1{   background-color:#ffdeeb;}
+.oc-pink-2{   background-color:#fcc2d7;}
+.oc-pink-3{   background-color:#faa2c1;}
+.oc-pink-4{   background-color:#f783ac;}
+.oc-pink-5{   background-color:#f06595;}
+.oc-pink-6{   background-color:#e64980;}
+.oc-pink-7{   background-color:#d6336c;}
+.oc-pink-8{   background-color:#c2255c;}
+.oc-pink-9{   background-color:#a61e4d;}
+
+.oc-grape-0{   background-color:#f8f0fc;}
+.oc-grape-1{   background-color:#f3d9fa;}
+.oc-grape-2{   background-color:#eebefa;}
+.oc-grape-3{   background-color:#e599f7;}
+.oc-grape-4{   background-color:#da77f2;}
+.oc-grape-5{   background-color:#cc5de8;}
+.oc-grape-6{   background-color:#be4bdb;}
+.oc-grape-7{   background-color:#ae3ec9;}
+.oc-grape-8{   background-color:#9c36b5;}
+.oc-grape-9{   background-color:#862e9c;}
+
+.oc-violet-0{   background-color:#f3f0ff;}
+.oc-violet-1{   background-color:#e5dbff;}
+.oc-violet-2{   background-color:#d0bfff;}
+.oc-violet-3{   background-color:#b197fc;}
+.oc-violet-4{   background-color:#9775fa;}
+.oc-violet-5{   background-color:#845ef7;}
+.oc-violet-6{   background-color:#7950f2;}
+.oc-violet-7{   background-color:#7048e8;}
+.oc-violet-8{   background-color:#6741d9;}
+.oc-violet-9{   background-color:#5f3dc4;}
+
+.oc-indigo-0{   background-color:#edf2ff;}
+.oc-indigo-1{   background-color:#dbe4ff;}
+.oc-indigo-2{   background-color:#bac8ff;}
+.oc-indigo-3{   background-color:#91a7ff;}
+.oc-indigo-4{   background-color:#748ffc;}
+.oc-indigo-5{   background-color:#5c7cfa;}
+.oc-indigo-6{   background-color:#4c6ef5;}
+.oc-indigo-7{   background-color:#4263eb;}
+.oc-indigo-8{   background-color:#3b5bdb;}
+.oc-indigo-9{   background-color:#364fc7;}
+
+.oc-blue-0{   background-color:#e7f5ff;}
+.oc-blue-1{   background-color:#d0ebff;}
+.oc-blue-2{   background-color:#a5d8ff;}
+.oc-blue-3{   background-color:#74c0fc;}
+.oc-blue-4{   background-color:#4dabf7;}
+.oc-blue-5{   background-color:#339af0;}
+.oc-blue-6{   background-color:#228be6;}
+.oc-blue-7{   background-color:#1c7ed6;}
+.oc-blue-8{   background-color:#1971c2;}
+.oc-blue-9{   background-color:#1864ab;}
+
+.oc-cyan-0{   background-color:#e3fafc;}
+.oc-cyan-1{   background-color:#c5f6fa;}
+.oc-cyan-2{   background-color:#99e9f2;}
+.oc-cyan-3{   background-color:#66d9e8;}
+.oc-cyan-4{   background-color:#3bc9db;}
+.oc-cyan-5{   background-color:#22b8cf;}
+.oc-cyan-6{   background-color:#15aabf;}
+.oc-cyan-7{   background-color:#1098ad;}
+.oc-cyan-8{   background-color:#0c8599;}
+.oc-cyan-9{   background-color:#0b7285;}
+
+.oc-teal-0{   background-color:#e6fcf5;}
+.oc-teal-1{   background-color:#c3fae8;}
+.oc-teal-2{   background-color:#96f2d7;}
+.oc-teal-3{   background-color:#63e6be;}
+.oc-teal-4{   background-color:#38d9a9;}
+.oc-teal-5{   background-color:#20c997;}
+.oc-teal-6{   background-color:#12b886;}
+.oc-teal-7{   background-color:#0ca678;}
+.oc-teal-8{   background-color:#099268;}
+.oc-teal-9{   background-color:#087f5b;}
+
+.oc-green-0{   background-color:#ebfbee;}
+.oc-green-1{   background-color:#d3f9d8;}
+.oc-green-2{   background-color:#b2f2bb;}
+.oc-green-3{   background-color:#8ce99a;}
+.oc-green-4{   background-color:#69db7c;}
+.oc-green-5{   background-color:#51cf66;}
+.oc-green-6{   background-color:#40c057;}
+.oc-green-7{   background-color:#37b24d;}
+.oc-green-8{   background-color:#2f9e44;}
+.oc-green-9{   background-color:#2b8a3e;}
+
+.oc-lime-0{   background-color:#f4fce3;}
+.oc-lime-1{   background-color:#e9fac8;}
+.oc-lime-2{   background-color:#d8f5a2;}
+.oc-lime-3{   background-color:#c0eb75;}
+.oc-lime-4{   background-color:#a9e34b;}
+.oc-lime-5{   background-color:#94d82d;}
+.oc-lime-6{   background-color:#82c91e;}
+.oc-lime-7{   background-color:#74b816;}
+.oc-lime-8{   background-color:#66a80f;}
+.oc-lime-9{   background-color:#5c940d;}
+
+.oc-yellow-0{   background-color:#fff9db;}
+.oc-yellow-1{   background-color:#fff3bf;}
+.oc-yellow-2{   background-color:#ffec99;}
+.oc-yellow-3{   background-color:#ffe066;}
+.oc-yellow-4{   background-color:#ffd43b;}
+.oc-yellow-5{   background-color:#fcc419;}
+.oc-yellow-6{   background-color:#fab005;}
+.oc-yellow-7{   background-color:#f59f00;}
+.oc-yellow-8{   background-color:#f08c00;}
+.oc-yellow-9{   background-color:#e67700;}
+
+.oc-orange-0{   background-color:#fff4e6;}
+.oc-orange-1{   background-color:#ffe8cc;}
+.oc-orange-2{   background-color:#ffd8a8;}
+.oc-orange-3{   background-color:#ffc078;}
+.oc-orange-4{   background-color:#ffa94d;}
+.oc-orange-5{   background-color:#ff922b;}
+.oc-orange-6{   background-color:#fd7e14;}
+.oc-orange-7{   background-color:#f76707;}
+.oc-orange-8{   background-color:#e8590c;}
+.oc-orange-9{   background-color:#d9480f;}
 

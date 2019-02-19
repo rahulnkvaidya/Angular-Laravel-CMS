@@ -16,17 +16,20 @@ export class TeamListComponent implements OnInit {
   public next;
   public prev;
   public last_page;
+  public imagepath;
   paramsSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private Notify: NotifyService,
     private url: UrlService
-  ) {}
+  ) {
+    this.imagepath = this.url.storagepath;
+  }
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {
-      this.url.teamlist(params["page"])
+      this.url.teamList(params["page"])
         .subscribe((data) => {
           this.goldens = data;
           this.goldendata = this.goldens["data"];
@@ -42,7 +45,7 @@ export class TeamListComponent implements OnInit {
   }
   deleteteam(id) {
     this.Notify.onwaitInfo();
-    this.url.teamdelete(id)
+    this.url.teamDelete(id)
       .subscribe(
         (data) => this.handleResponse(data),
         (error) => this.handleError(error)

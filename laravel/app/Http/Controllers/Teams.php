@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use Illuminate\Http\Request;
+use Response;
+use Illuminate\Support\Facades\Storage;
 
 class Teams extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function List()
     {
         $inter = Team::orderBy('id', 'asc')
         ->limit(10)
@@ -21,23 +18,7 @@ class Teams extends Controller
        return $inter;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function Create(Request $request)
     {
         $data = Team::create($request->all());
         $insertedId = $data->id;
@@ -48,46 +29,23 @@ class Teams extends Controller
         return response()->json('Successfully added');
         } 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Team $team)
+    public function Read($id)
     {
-        $inter = Team::find($team);
+        $inter = Team::find($id);
         return $inter;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Team $team)
+    public function Update(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Team $team)
-    {
-        $id = $team;
-        $dt = Team::where('id', 'like', $id);
-        $dt->update(['name' => $request->name,
-                    'tag_line' => $request->tag_line,
-                    'description' => $request->description]);
-
-        if ($request->hasFile('photo')) {
+        $id = $request->id;
+        $dt = Team::where('id', $id)
+        ->update([
+            'name' => $request->name,
+            'css' => $request->css,
+            'tag_line' => $request->tag_line,
+            'description' => $request->description
+            ]);
+        if ($request->hasFile('image')) {
             ///////// old photo remove ///////
             $dbt = Team::where('id', 'like', $id)->first();
             if (Storage::exists($dbt->image)) {
@@ -95,23 +53,17 @@ class Teams extends Controller
                 Storage::delete($dbt->image);
             }
             ///////////////////
-            $path = $request->file('photo')->store('public');
+            $path = $request->file('image')->store('public');
             $dt = Team::where('id', 'like', $id);
             $dt->update(['image' => $path]);
-            } 
+        } 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Team  $team
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Team $team)
+    public function Delete($id)
     {
-        echo $team;
+       
         /// get image url for delete
-        $dbt = Team::where('id','like', $team)->first();
+        $dbt = Team::where('id','like', $id)->first();
         /// Delete Stored image 
         if (Storage::exists($dbt->image)) {
             /// Delete Stored image 

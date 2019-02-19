@@ -1,19 +1,19 @@
-<mat-toolbar class="m-0  yellow-9 text-white">
+<mat-toolbar class="m-0 bg-dark text-white">
   <i class="material-icons mr-2">directions_bike</i> Team Update
   <span class="fill-remaining-space"></span>
 </mat-toolbar>
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <div class="container-fluid m-0 p-0 mb-5">
     <div class="row">
-      <div class="mt-4 col-12 bg-dark mb-5">
+      <div class="mt-2 col-12 mb-5">
         <div class="card shadow">
-          <div class="card-body bg-dark">
+          <div class="card-body">
             <div class="form-group row">
               <div class="col-sm-6">
                 <input
                   type="hidden"
                   name="id"
-                  class="form-control text-light bg-dark"
+                  class="form-control "
                   formControlName="id"
                 />
               </div>
@@ -23,7 +23,7 @@
                 >
                 <input
                   name="name"
-                  class="form-control text-light bg-dark"
+                  class="form-control"
                   formControlName="name"
                 />
               </div>
@@ -46,7 +46,7 @@
                 >
                 <input
                   name="tag_line"
-                  class="form-control text-light bg-dark"
+                  class="form-control"
                   formControlName="tag_line"
                 />
               </div>
@@ -75,13 +75,12 @@
               <button
                 type="submit"
                 [disabled]="!profileForm.valid"
-                class="btn btn-warning text-light float-right m-2"
+                class="btn btn-warning float-right m-2"
               >
                 Submit
               </button>
             </div>
-
-            <!--  {{ profileForm.value | json }} -->
+              {{ profileForm.value | json }} 
           </div>
         </div>
       </div>

@@ -19,7 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
     'album'=> 'Albums',
     'album-image'=>'AlbumImages',
-    'team'=> 'Teams',
     'service'=> 'ServiceController',
     'pageimage' => 'PageImageController'
 ]);
+//////// Team CRUD //////////
+Route::get('team', 'Teams@List');
+Route::get('team/{id}', 'Teams@Read');
+Route::post('team', 'Teams@Create');
+Route::post('team/update', 'Teams@Update');
+Route::get('team/delete/{id}','Teams@Delete');

@@ -7,10 +7,10 @@ import { HttpClient } from "@angular/common/http";
 export class UrlService {
 // for Local host 
   private baseUrl = "http://localhost/laraang/laravel/public/api";
-//  private baseUrl = "http://rpsrobosoft.com/laravel/public/api";
+//private baseUrl = "http://rpsrobosoft.com/laravel/public/api";
+  public storagepath = "http://localhost/laraang/laravel/storage/app/";
 
   constructor(private http: HttpClient) {}
- 
   albumread(data) {
     return this.http.get(`${this.baseUrl}/album/` + data);
   }
@@ -27,7 +27,7 @@ export class UrlService {
     return this.http.post(`${this.baseUrl}/album-image`, data);
   }
   albumedit(data) {
-    return this.http.post(`${this.baseUrl}/albums/edit`, data);
+    return this.http.post(`${this.baseUrl}/album/edit`, data);
   }
   albumnew(data) {
     return this.http.post(`${this.baseUrl}/album`, data);
@@ -46,19 +46,21 @@ export class UrlService {
     return this.http.post(`${this.baseUrl}/service`, data);
   }
   // team
-  teamread(data) {
-    return this.http.get(`${this.baseUrl}/team/` + data);
-  }
-  teamlist(data) {
+  teamList(data) {
     return this.http.get(`${this.baseUrl}/team?page=` + data);
   }
-  teamdelete(data){
-    return this.http.delete(`${this.baseUrl}/team`, data);
+  teamRead(data) {
+    return this.http.get(`${this.baseUrl}/team/` + data);
   }
-  teamnew(data) {
+  teamCreate(data) {
     return this.http.post(`${this.baseUrl}/team`, data);
   }
-  teamedit(data, fd) {
-    return this.http.put(`${this.baseUrl}/team/` + data, fd);
+  teamUpdate(data) {
+    return this.http.post(`${this.baseUrl}/team/update`, data);
   }
+  teamDelete(data){
+    return this.http.get(`${this.baseUrl}/team/delete/`+ data);
+  }
+  
+  
 }
