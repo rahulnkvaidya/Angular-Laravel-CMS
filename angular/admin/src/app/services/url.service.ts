@@ -41,14 +41,17 @@ export class UrlService {
   serviceList(data) {
     return this.http.get(`${this.baseUrl}/service?page=` + data);
   }
+  serviceRead(data) {
+    return this.http.get(`${this.baseUrl}/service/` + data);
+  }
   serviceCreate(data) {
     return this.http.post(`${this.baseUrl}/service`, data);
   }
   serviceUpdate(data) {
-    return this.http.post(`${this.baseUrl}/service`, data);
+    return this.http.post(`${this.baseUrl}/service/update`, data);
   }
   serviceDelete(data){
-    return this.http.get(`${this.baseUrl}/service`, data);
+    return this.http.get(`${this.baseUrl}/service/delete/`+ data);
   }
   // team
   teamList(data) {

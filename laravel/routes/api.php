@@ -17,7 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::apiResources([
-    'service'=> 'ServiceController',
     'pageimage' => 'PageImageController'
 ]);
 //////// Team CRUD //////////
@@ -37,3 +36,9 @@ Route::get('album-images/{id}', 'AlbumImages@List');
 Route::post('album-images', 'AlbumImages@Create');
 Route::post('album-images/update', 'AlbumImages@Update');
 Route::get('album-images/delete/{id}','AlbumImages@Delete');
+//////// Service CRUD //////////
+Route::get('service', 'ServiceController@List');
+Route::get('service/{id}', 'ServiceController@Read');
+Route::post('service', 'ServiceController@Create');
+Route::post('service/update', 'ServiceController@Update');
+Route::get('service/delete/{id}','ServiceController@Delete');

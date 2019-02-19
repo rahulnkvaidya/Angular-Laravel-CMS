@@ -16,13 +16,16 @@ export class ServicesListComponent implements OnInit {
   public next;
   public prev;
   public last_page;
+  public imagepath;
   paramsSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private Notify: NotifyService,
     private url: UrlService
-  ) {}
+  ) {
+    this.imagepath = this.url.storagepath;
+  }
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe((params: Params) => {

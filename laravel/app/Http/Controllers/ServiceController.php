@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Response;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function List()
     {
         $inter = Service::orderBy('id', 'asc')
         ->limit(10)
@@ -21,24 +18,7 @@ class ServiceController extends Controller
         $inter->withPath('');
        return $inter;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function Create(Request $request)
     {
         $data = Service::create($request->all());
         $insertedId = $data->id;
@@ -49,40 +29,14 @@ class ServiceController extends Controller
         return response()->json('Successfully added');
         } 
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Service $service)
+    public function Read($id)
     {
-        $inter = Service::find($service);
+        $inter = Service::find($id);
         return $inter;
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Service $service)
+    public function Update(Request $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Service $service)
-    {
-        $id = $service;
+        $id = $request->id;
         $dt = Service::where('id', 'like', $id);
         $dt->update(['title' => $request->title,
                     'css' => $request->css,
@@ -101,24 +55,13 @@ class ServiceController extends Controller
             $dt->update(['image' => $path]);
             } 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Service $service)
+    public function Delete($id)
     {
-        /// get image url for delete
-        $dbt = Service::where('id','like', $service)->first();
-        /// Delete Stored image 
+        $dbt = Service::where('id','like', $id)->first();
         if (Storage::exists($dbt->image)) {
-            /// Delete Stored image 
             Storage::delete($dbt->image);
         }
-        //print_r($dbt[0]->image);
-        $dt = Service::find($service);
+        $dt = Service::find($id);
         $dt->delete();
     }
 }
