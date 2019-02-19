@@ -6,6 +6,7 @@ import { AlbumListComponent } from './album-list/album-list.component';
 import { TeamComponent } from './team/team.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ServicesComponent } from './services/services.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: "team/:page",
     component: TeamComponent
+  },
+  {
+    path: "services/:page",
+    component: ServicesComponent
   },
   {
     path: "contact-us.html",
