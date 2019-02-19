@@ -14,6 +14,7 @@ import { ServicesComponent } from './services/services.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { MyNavComponent } from './my-nav/my-nav.component';
+import { UrlService } from './url.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { MyNavComponent } from './my-nav/my-nav.component';
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    UrlService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,41 @@
-<p>
-  team works!
-</p>
+<div class="container shadow">
+  <div class="row bg-secondary">
+    <div class="col-12 bg-danger text-white m-0">
+      <h1 class="text-white text-center">OUR TEAM MEMBERS</h1>
+    </div>
+    <div class="row p-4 mt-2" style="background-color:#000000">
+      <div class="row  p-4">
+        <div class="col-md-4 col-lg-4 p-2" *ngFor="let voice of newsdata">
+          <img
+            class="rounded-circle"
+            src="{{ imagepath }}{{ voice.image }}"
+            width="100%"
+            alt="image cap"
+          />
+          <h5 class="text-white text-center">{{ voice.name }}</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="row p-4 pb-1 mt-1" *ngFor="let voice of newsdata">
+      <div class="col-md-12 col-lg-12 p-2">
+        <div class="card bg-light shadow">
+          <div class="card-body">
+            <div
+              class="col-12 border-bottom border-dark {{
+                voice.css
+              }} text-white shadow pt-2 mb-2"
+            >
+              <h2>{{ voice.name }}</h2>
+              <p>
+                <em><div innerHTML="{{ voice.tag_line }}"></div></em>
+              </p>
+            </div>
+
+            <div innerHTML="{{ voice.description }}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
