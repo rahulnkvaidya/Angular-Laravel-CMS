@@ -24,7 +24,7 @@ class PageTopImageController extends Controller
         return $inter;
     }
     public function PagePosition($page, $position){
-        $inter = page_top_image::where('page', 'like', $page)->where('position', 'like', $position)->first();
+        $inter = PageTopImage::where('pagename', 'like', $page)->where('position', 'like', $position)->first();
        return $inter;
     }
     public function Create(Request $request)
