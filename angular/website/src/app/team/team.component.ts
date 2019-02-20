@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, Params } from "@angular/router";
 import { UrlService } from '../url.service';
@@ -19,7 +18,7 @@ export class TeamComponent implements OnInit {
   public last_page;
   public imagepath;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private url: UrlService) {
+  constructor( private route: ActivatedRoute, private url: UrlService) {
     this.imagepath = this.url.storagepath;
   }
 

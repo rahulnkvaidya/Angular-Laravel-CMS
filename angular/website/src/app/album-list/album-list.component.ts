@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, Params } from "@angular/router";
 import { UrlService } from '../url.service';
@@ -20,13 +19,12 @@ export class AlbumListComponent implements OnInit {
   public top;
   public imagepath;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute,  private url: UrlService) {
+  constructor(private route: ActivatedRoute,  private url: UrlService) {
     this.imagepath = this.url.storagepath;
   }
 
   ngOnInit() {
-    this.http
-      .get("http://www.artpickle.in/lara/api/page_top_images/album/top")
+    this.url.pageImage("album","top")
       .subscribe((data) => {
         this.albumstop = data;
         this.top = this.albumstop["image"];

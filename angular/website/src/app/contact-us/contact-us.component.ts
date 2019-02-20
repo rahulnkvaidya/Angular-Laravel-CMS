@@ -16,9 +16,8 @@ export class ContactUsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http
-      .get("http://www.artpickle.in/lara/api/page_top_images/contact/top")
-      .subscribe((data) => {
+    this.url.pageImage("contact","top")
+     .subscribe((data) => {
         this.contact = data;
         this.cont = this.contact["image"];
         console.log(this.cont);

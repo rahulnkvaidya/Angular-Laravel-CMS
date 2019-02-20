@@ -43,6 +43,7 @@ Route::get('service/delete/{id}','ServiceController@Delete');
 //////// Pageimage CRUD //////////
 Route::get('pageimage', 'PageTopImageController@List');
 Route::get('pageimage/{id}', 'PageTopImageController@Read');
+Route::get('pageimage/{page}/{position}', 'PageTopImageController@PagePosition');
 Route::post('pageimage', 'PageTopImageController@Create');
 Route::post('pageimage/update', 'PageTopImageController@Update');
 Route::get('pageimage/delete/{id}','PageTopImageController@Delete');

@@ -46,4 +46,7 @@ export class UrlService {
   pageTopImageRead(data) {
     return this.http.get(`${this.baseUrl}/pageimage/` + data);
   }
+  pageImage(page,position){
+    return this.http.get(`${this.baseUrl}/pageimage/` + page + `/`+ position);
+  }
 }
