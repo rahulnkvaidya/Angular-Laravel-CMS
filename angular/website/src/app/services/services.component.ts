@@ -11,19 +11,19 @@ export class ServicesComponent implements OnInit {
   headerImage: Object;
   public imagepath;
 
-  constructor( private route: ActivatedRoute, private url: UrlService) {
+  constructor(private route: ActivatedRoute, private url: UrlService) {
     this.imagepath = this.url.storagepath;
-    this.url.pageImage("services","top")
-    .subscribe((data) => {
-      this.headerImage = data;
-      this.Image = this.headerImage["image"];
-      console.log(this.Image);
-    });
-    
+    this.url.pageImage("services", "top")
+      .subscribe((data) => {
+        this.headerImage = data;
+        this.Image = this.headerImage["image"];
+        console.log(this.Image);
+      });
+
   }
 
   ngOnInit() {
-  
+
   }
 
 }

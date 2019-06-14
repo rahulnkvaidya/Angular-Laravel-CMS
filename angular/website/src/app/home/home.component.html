@@ -1,7 +1,7 @@
 <div class="container shadow">
   <div class="row">
     <div class="col-md-12 col-lg-12 m-0 p-0">
-      <img src="assets/logo.png" alt="image">
+      <img src="{{ imagepath }}{{ logo }}" class="img-fluid" alt="image">
       <img src="{{ imagepath }}{{ Image }}" class="img-fluid" alt="Responsive image" />
     </div>
   </div>
@@ -24,7 +24,7 @@
     <div class="row p-4 shadow">
       <div class="col-md-4 col-lg-4 p-2 ">
         <div class="card shadow" style="background-color:#000000">
-          <img class="card-img-top" src="http://www.artpickle.in/lara/storage/app/{{ vision }}" alt="Card image cap" />
+          <img class="card-img-top" src="{{ imagepath }}{{ ourVision }}" alt="Card image cap" />
           <div class="card-body text-white">
             <h5 class="card-title">Our Vision</h5>
             <p class="card-text">
@@ -40,7 +40,7 @@
 
       <div class="col-md-4 col-lg-4 p-2">
         <div class="card shadow" style="background-color:#000000">
-          <img class="card-img-top" src="http://www.artpickle.in/lara/storage/app/{{ aim }}" alt="Card image cap" />
+          <img class="card-img-top" src="{{ imagepath }}{{ ourAim }}" alt="Card image cap" />
           <div class="card-body text-white">
             <h5 class="card-title">Our Aim</h5>
             <p class="card-text">
@@ -57,7 +57,7 @@
 
       <div class="col-md-4 col-lg-4 p-2">
         <div class="card shadow" style="background-color:#000000">
-          <img class="card-img-top" src="http://www.artpickle.in/lara/storage/app/{{ weoffer }}" alt="Card image cap" />
+          <img class="card-img-top" src="{{ imagepath }}{{ Whatweoffer }}" alt="Card image cap" />
           <div class="card-body text-white">
             <h5 class="card-title">What we offer</h5>
             <p class="card-text">
@@ -138,8 +138,7 @@
 
       <div class="col-md-4 col-lg-4 p-2">
         <div class="card shadow" style="background-color:#000000">
-          <img class="card-img-top" src="http://www.artpickle.in/lara/storage/app/{{ placement }}"
-            alt="Card image cap" />
+          <img class="card-img-top" src="{{ imagepath }}{{ OurPlacements }}" alt="Card image cap" />
           <div class="card-body text-white">
             <h5 class="card-title">Our Placements</h5>
             <p class="card-text">
