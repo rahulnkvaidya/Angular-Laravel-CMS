@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//////// Home CRUD //////////
+Route::get('api/team', 'teams@teamApi');
+// Route::get('api/team/{id}', 'teams@teamApiId');
+// Route::post('api/team.html', 'teams@teamCreate');
+// Route::post('api/team/edit', 'teams@teamUpdate');
+// Route::get('api/team/delete/{id}','teams@teamDelete');
